@@ -25,9 +25,33 @@ int main() {
     //set the integer length of the message
     length = strlen(message);
     //ask whether or not the user would like to encrypt or decrypt the message then assign to choice
-    cout << "Enter your output choice \n1. Enbcryption \n2.Decryption \n";
+    cout << "Enter your output choice \n1. Encryption \n2. Decryption \n";
     cin >> choice;
-    cout << message, length, key, choice;
+    //check if choice 1 or 2
+    if (choice == 1) {//encrypt
+        char ch;
+        //loop iterates through and replace each char based on key
+        for (int i = 0; message[i] != '\0'; ++i) {
+            ch = message[i];
+            //lowercase
+            if (ch >= 'a' && ch <= 'z'){
+                ch = ch + key;
+                if (ch > 'z') {
+                    ch = ch -'z' + 'a' -1;
+                }
+                message[i] = ch;
+            }
+            //uppercase
+            else if (ch >= 'A' && ch <= 'Z'){
+                ch = ch + key;
+                if (ch > 'Z') {
+                    ch = ch -'Z' + 'A' -1;
+                }
+                message[i] = ch;
+            }
+        }
+        printf("Encryption Complete\n""Message: %s", message);   
+    }
     return 0;
 
 }
